@@ -1,0 +1,114 @@
+@import url('https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css');
+
+:root {
+    --width-body: 240px;
+    --rotate-deg: -146deg;
+}
+
+body {
+    -webkit-user-select: none;
+}
+
+.app {
+    position: relative;
+    width: var(--width-body);
+    height: var(--width-body);
+}
+
+.controllers {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+.minimap {
+    z-index: 1;
+    width: var(--width-body);
+    height: var(--width-body);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #101010;
+    box-sizing: border-box;
+}
+
+.minimap:before {
+    box-shadow: inset 0 0 10px 6px rgb(0 0 0 / 77%);
+    content: '';
+    position: absolute;
+    width: var(--width-body);
+    height: var(--width-body);
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+}
+
+.mapicon {
+    font-size: 15px !important;
+    line-height: 23px;
+}
+
+.ctrl {
+    width: 25px;
+    height: 25px;
+    background: black;
+    color: #ffe97c;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(50% - 12.5px);
+    left: calc(50% - 12.5px);
+    cursor: pointer;
+    border: 1px solid #af6b26;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.settings {
+    transform: rotate(calc(var(--rotate-deg) + 0deg)) translate(calc(var(--width-body) / 2)) rotate(calc(0deg - var(--rotate-deg) - 0deg));
+
+}
+
+.exit {
+    transform: rotate(calc(var(--rotate-deg) + 18deg)) translate(calc(var(--width-body) / 2)) rotate(calc(0deg - var(--rotate-deg) - 18deg));
+    background: #720000;
+    border-color: black;
+    color: #fff;
+}
+
+.move {
+    transform: rotate(calc(var(--rotate-deg) + 191deg)) translate(calc(var(--width-body) / 2)) rotate(calc(0deg - var(--rotate-deg) - 191deg));
+    /*-webkit-app-region: drag;*/ /* MUST USE ANOTHER METHOD SINCE USING setIgnoreMouseEvents*/
+}
+
+.size-inc {
+    transform: rotate(calc(var(--rotate-deg) + 155deg)) translate(calc(var(--width-body) / 2)) rotate(calc(0deg - var(--rotate-deg) - 155deg));
+}
+
+.size-dec {
+    transform: rotate(calc(var(--rotate-deg) + 173deg)) translate(calc(var(--width-body) / 2)) rotate(calc(0deg - var(--rotate-deg) - 173deg));
+}
+
+.zoom-inc {
+    transform: rotate(calc(var(--rotate-deg) + 209deg)) translate(calc(var(--width-body) / 2)) rotate(calc(0deg - var(--rotate-deg) - 201deg));
+}
+
+.zoom-dec {
+    transform: rotate(calc(var(--rotate-deg) + 228deg)) translate(calc(var(--width-body) / 2)) rotate(calc(0deg - var(--rotate-deg) - 219deg));
+}
+
+.minimap-iframe {
+    border: 0;
+    width: var(--width-body);
+    height: var(--width-body);
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
