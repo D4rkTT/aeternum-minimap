@@ -14,6 +14,8 @@ Now you can use [Aeternum map](https://aeternum-map.gg/) as real minimap overlay
 
 Now you will get minimap overlay of [Aeternum map](https://aeternum-map.gg/)
 
+Like Aeternum map said: Keep in mind, that this is definitly in the grey area of AGS ToS. Use at own risk 💀!
+
 ## Notes
 - If you want to close the whole app just click x button on the minimap
 - If you want to open aeternum map window at any time to adjust filters, routes...etc you can click on settings button on the minimap it will open aeternum map window change settings you want then close it then the minimap will show again
