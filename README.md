@@ -1,5 +1,6 @@
 # Aeternum Minimap
 <p align="center"><img align="center" src="minimap.png"></p>
+
 Do you want to use [Aeternum map](https://aeternum-map.gg/) as overlay but at same time want it like a real minimap?
 
 Now you can use [Aeternum map](https://aeternum-map.gg/) as real minimap overlay with simple steps.
