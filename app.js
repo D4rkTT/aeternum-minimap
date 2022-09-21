@@ -48,6 +48,9 @@ const CreateInitWindow = () => {
   initializationWindow.webContents.executeJavaScript(`
       window.api.receive("update-minimap-zoom", async (increase) => {
         var zoom = await localStorage.getItem("minimapZoom")
+        if(!zoom){
+          zoom = 5
+        }
         if(increase) {
           await localStorage.setItem("minimapZoom", (parseInt(zoom) + 1) < 7? parseInt(zoom) + 1: parseInt(zoom))
         }else {
@@ -145,11 +148,6 @@ ipcMain.on("update-minimap-zoom", (event, increase) => {
   if (initializationWindow) {
     initializationWindow.webContents.send('update-minimap-zoom', increase);
   }
-})
-
-ipcMain.on("debug-mouse", (event) => {
-  const point = screen.getCursorScreenPoint()
-  console.log(point)
 })
 
 ipcMain.on("moveWindow", (event, cord) => {
