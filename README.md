@@ -9,7 +9,7 @@ Now you can use [Aeternum map](https://aeternum-map.gg/) as real minimap overlay
 - Download the latest release from [Releases page](https://github.com/D4rkTT/aeternum-minimap/releases)
 - Get location straeming token from Aeternum map overworlf app
 - Start Aeternum Minimap it will open [aeternum-map.gg](https://aeternum-map.gg/), setup the live location with step 1 token
-- Choose settings as you like (you can change it anytime later)
+- Choose settings, filters...etc as you like (you can change it anytime later)
 - Close the window
 
 Now you will get minimap overlay of [Aeternum map](https://aeternum-map.gg/)
