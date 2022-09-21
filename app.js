@@ -95,7 +95,7 @@ const CreateMinimapWindow = (locationX = 0, locationY = 0) => {
     }
   )
 
-  //minimapWindow.setIgnoreMouseEvents(true, { forward: true });
+  minimapWindow.setIgnoreMouseEvents(true, { forward: true });
 }
 
 
@@ -138,7 +138,7 @@ ipcMain.on("settings", (event, args) => {
 })
 
 ipcMain.on("setIgnoreMouse", (event, args) => {
-  //minimapWindow.setIgnoreMouseEvents(args, { forward: true });
+  minimapWindow.setIgnoreMouseEvents(args, { forward: true });
 })
 
 ipcMain.on("update-minimap-zoom", (event, increase) => {
