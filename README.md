@@ -1,13 +1,13 @@
 # Aeternum Minimap
 <p align="center"><img align="center" src="minimap.png"></p>
 
-Do you want to use [Aeternum map](https://aeternum-map.gg/) as overlay but at same time want it like a real minimap?
+Do you want to use [Aeternum map](https://aeternum-map.gg/) as overlay but at the same time want it like a real minimap?
 
 Now you can use [Aeternum map](https://aeternum-map.gg/) as real minimap overlay with simple steps.
 
 ## Usage
 - Download the latest release from [Releases page](https://github.com/D4rkTT/aeternum-minimap/releases)
-- Get location straeming token from Aeternum map overworlf app
+- Get location streaming token from Aeternum map overworlf app
 - Start Aeternum Minimap it will open [aeternum-map.gg](https://aeternum-map.gg/), setup the live location with step 1 token
 - Choose settings, filters...etc as you like (you can change it anytime later)
 - Close the window
