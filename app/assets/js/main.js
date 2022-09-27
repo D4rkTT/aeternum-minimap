@@ -1,6 +1,7 @@
 var moveBtnClickDown = false
 var oldX
 var oldY
+var showBtns = true
 
 const mapSize = (inc) => {
     var MapWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--width-body'))
@@ -39,6 +40,23 @@ $(".move").mousedown((e) => {
     oldY = e.clientY
 })
 
+$(".move").dblclick((e) => {
+    for(var btn of $(".ctrl").filter((i,element) => !element.className.includes("move"))){
+        if(showBtns){
+            $(btn).hide(50) 
+        }else{
+            $(btn).show(50)
+        }
+    }
+    if(showBtns){
+        showBtns=false
+        $('.move').children().html("lock")
+    }else{
+        showBtns=true
+        $('.move').children().html("open_with")
+    }
+})
+
 $(document).mouseup((e) => {
     moveBtnClickDown = false
 })
@@ -66,3 +84,4 @@ $('.zoom-inc').click((e)=>{
 $('.zoom-dec').click((e)=>{
     window.api.send('update-minimap-zoom', false)
 })
+

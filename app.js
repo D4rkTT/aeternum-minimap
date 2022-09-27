@@ -3,7 +3,7 @@ const {
   BrowserWindow,
   webFrameMain,
   ipcMain,
-  screen
+  globalShortcut
 } = require('electron')
 const {
   localStorage
@@ -21,8 +21,14 @@ const CreateInitWindow = () => {
       preload: path.join(__dirname, 'app/assets/js/preload.js'),
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
-    }
+    },
+    show: false
   })
+
+  initializationWindow.webContents.on('did-finish-load', function() {
+    initializationWindow.show();
+  });
+
   initializationWindow.setMenuBarVisibility(false)
   initializationWindow.loadURL("https://aeternum-map.gg/")
   initializationWindow.on('close', async (e) => {
@@ -98,11 +104,31 @@ const CreateMinimapWindow = (locationX = 0, locationY = 0) => {
     }
   )
 
+  
   minimapWindow.setIgnoreMouseEvents(true, { forward: true });
 }
 
 
 app.whenReady().then(() => {
+
+  globalShortcut.register("F6", () => {
+    if(minimapWindow){
+      minimapWindow.isVisible() ? minimapWindow.hide(): minimapWindow.show()
+    }
+  })
+
+  globalShortcut.register("F7", () => {
+    if(initializationWindow){
+      initializationWindow.webContents.send('update-minimap-zoom', false);
+    }
+  })
+
+  globalShortcut.register("F8", () => {
+    if(minimapWindow){
+      initializationWindow.webContents.send('update-minimap-zoom', true);
+    }
+  })
+
   CreateInitWindow()
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
