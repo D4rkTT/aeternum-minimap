@@ -10,7 +10,20 @@ const {
 } = require('electron-browser-storage');
 const path = require('path')
 
-var initializationWindow, minimapWindow
+var initializationWindow, minimapWindow, loadingWindow
+
+const CreateLoadingWindow = () => {
+  loadingWindow = new BrowserWindow({
+    width: 200,
+    height: 280,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true,
+      nodeIntegrationInWorker: true,
+    }
+  })
+  loadingWindow.loadFile('app/loading.html')
+}
 
 const CreateInitWindow = () => {
   initializationWindow = new BrowserWindow({
@@ -26,7 +39,8 @@ const CreateInitWindow = () => {
   })
 
   initializationWindow.webContents.on('did-finish-load', function() {
-    initializationWindow.show();
+    loadingWindow.close()
+    initializationWindow.show()
   });
 
   initializationWindow.setMenuBarVisibility(false)
@@ -80,8 +94,11 @@ const CreateMinimapWindow = (locationX = 0, locationY = 0) => {
       nodeIntegrationInWorker: true,
     }
   })
+
   minimapWindow.loadFile("app/index.html")
   minimapWindow.setAlwaysOnTop(true, 'screen-saver')
+  minimapWindow.setIgnoreMouseEvents(true, { forward: true });
+
   minimapWindow.on('move', async (e) => {
     await localStorage.setItem('last_position', JSON.stringify(minimapWindow.getPosition()));
   })
@@ -102,10 +119,7 @@ const CreateMinimapWindow = (locationX = 0, locationY = 0) => {
         }
       }
     }
-  )
-
-  
-  minimapWindow.setIgnoreMouseEvents(true, { forward: true });
+  )  
 }
 
 
@@ -128,7 +142,7 @@ app.whenReady().then(() => {
       initializationWindow.webContents.send('update-minimap-zoom', true);
     }
   })
-
+  CreateLoadingWindow()
   CreateInitWindow()
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {

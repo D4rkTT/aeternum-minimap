@@ -35,9 +35,11 @@ $("body").mousemove((e) => {
 })
 
 $(".move").mousedown((e) => {
-    moveBtnClickDown = true
-    oldX = e.clientX
-    oldY = e.clientY
+    if(showBtns){
+        moveBtnClickDown = true
+        oldX = e.clientX
+        oldY = e.clientY
+    }
 })
 
 $(".move").dblclick((e) => {
@@ -84,4 +86,3 @@ $('.zoom-inc').click((e)=>{
 $('.zoom-dec').click((e)=>{
     window.api.send('update-minimap-zoom', false)
 })
-

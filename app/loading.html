@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Source+Serif+Pro");
+        * {
+            -webkit-user-select: none;
+            -webkit-app-region: drag;
+        }
+
+        body {
+            background: #000000;
+            overflow: hidden;
+            
+        }
+
+        .spinner {
+            width: 10rem;
+            height: 10rem;
+        }
+
+        .spinner.spinner3 {
+            border-top: 3px solid rgb(255 255 255 / 50%);
+            border-right: 3px solid transparent;
+            border-radius: 50%;
+            -webkit-animation: rotation 0.8s linear infinite;
+            animation: rotation 0.8s linear infinite;
+            z-index: 1;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .loading-logo {
+            background: url(./assets/img/nw.jpg);
+            width: 8rem;
+            height: 8rem;
+            background-size: cover;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        @-webkit-keyframes rotation {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotation {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cell">
+        <div class="wrapper">
+            <div class="spinner spinner3"></div>
+            <div class="loading-logo"></div>
+        </div>
+    </div>
+</body>
+
+</html>

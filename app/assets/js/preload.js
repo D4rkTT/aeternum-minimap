@@ -12,7 +12,7 @@ contextBridge.exposeInMainWorld(
             }
         },
         send:  (channel, data) => {
-            let validChannels = ["inc-size", "dec-size", "close-app", "settings", "setIgnoreMouse", "update-minimap-zoom", "debug-mouse", "moveWindow"];
+            let validChannels = ["inc-size", "dec-size", "close-app", "settings", "setIgnoreMouse", "update-minimap-zoom", "moveWindow"];
             if (validChannels.includes(channel)) {
                 ipcRenderer.send(channel, data);
             }
