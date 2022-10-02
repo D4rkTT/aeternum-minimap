@@ -1,16 +1,35 @@
 var moveBtnClickDown = false
 var oldX
 var oldY
-var showBtns = true
+var Locked = false
+var superLocked = false
 
 const mapSize = (inc) => {
     var MapWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--width-body'))
     if(inc){
-        window.api.send('inc-size')
+        window.api.send('inc-size', true)
         document.documentElement.style.setProperty("--width-body", `${MapWidth + 20}px`);
     }else {
-        window.api.send('dec-size')
+        window.api.send('inc-size', false)
         document.documentElement.style.setProperty("--width-body", `${MapWidth - 20}px`);
+    }
+    window.api.send('update-minimap-size', getComputedStyle(document.documentElement).getPropertyValue('--width-body'))
+}
+
+const ToggleLock = () => {
+    for(var btn of $(".ctrl").filter((i, element) => !element.className.includes("move"))){
+        if(!Locked){
+            $(btn).hide(50) 
+        }else{
+            $(btn).show(50)
+        }
+    }
+    if(!Locked){
+        Locked = true
+        $('.move').children().html("lock")
+    }else{
+        Locked = false
+        $('.move').children().html("open_with")
     }
 }
 
@@ -18,7 +37,9 @@ $(document).ready((e) => {
     var containers = $(".ctrl")
     for (var container of containers) {
         container.onmouseenter = () => {
-            window.api.send("setIgnoreMouse", false)
+            if(!superLocked){
+                window.api.send("setIgnoreMouse", false)
+            }
         }
         container.onmouseleave = () => {
             window.api.send("setIgnoreMouse", true)
@@ -35,7 +56,7 @@ $("body").mousemove((e) => {
 })
 
 $(".move").mousedown((e) => {
-    if(showBtns){
+    if(!Locked){
         moveBtnClickDown = true
         oldX = e.clientX
         oldY = e.clientY
@@ -43,20 +64,7 @@ $(".move").mousedown((e) => {
 })
 
 $(".move").dblclick((e) => {
-    for(var btn of $(".ctrl").filter((i,element) => !element.className.includes("move"))){
-        if(showBtns){
-            $(btn).hide(50) 
-        }else{
-            $(btn).show(50)
-        }
-    }
-    if(showBtns){
-        showBtns=false
-        $('.move').children().html("lock")
-    }else{
-        showBtns=true
-        $('.move').children().html("open_with")
-    }
+    ToggleLock()
 })
 
 $(document).mouseup((e) => {
@@ -85,4 +93,22 @@ $('.zoom-inc').click((e)=>{
 
 $('.zoom-dec').click((e)=>{
     window.api.send('update-minimap-zoom', false)
+})
+
+window.api.receive("update-minimap-size", (size)=>{
+    document.documentElement.style.setProperty("--width-body", size);
+})
+
+window.api.receive("toggle-super-lock", ()=>{
+    if(!superLocked){
+        if(!Locked){
+            ToggleLock()
+        }
+        $('.move').css("color", "red")
+        window.api.send("setIgnoreMouse", true)
+        superLocked = true
+    }else{
+        $('.move').css("color", "#ffe97c")
+        superLocked = false
+    }
 })

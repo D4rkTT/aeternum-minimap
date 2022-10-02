@@ -1,6 +1,6 @@
 {
   "name": "Aeternum-Minimap",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Minimap overlay app for Aeternum-Map.gg",
   "main": "app.js",
   "build": {
